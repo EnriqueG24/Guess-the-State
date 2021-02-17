@@ -25,3 +25,12 @@ while len(guessed_states) < 50:
         state_data = data[data.state == answer_state]
         t.goto(int(state_data.x), int(state_data.y))
         t.write(answer_state)
+
+
+def Difference(li1, li2):
+    li_dif = [i for i in li1 + li2 if i not in li1 or i not in li2]
+    return li_dif
+
+states_to_learn = Difference(all_states, guessed_states)
+new_data = pandas.DataFrame(states_to_learn)
+new_data.to_csv("states_to_learn.csv")
